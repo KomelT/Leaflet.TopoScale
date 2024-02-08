@@ -1,0 +1,21 @@
+{
+  "name": "leaflet.toposcale",
+  "version": "1.0.0",
+  "description": "Leaflet plugin for displaying Topographical Scale",
+  "scripts": {
+    "build": "minify src/leaflet.toposcale.js > dist/leaflet.toposcale.min.js && minify src/leaflet.toposcale.css > dist/leaflet.toposcale.min.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KomelT/Leaflet.TopoScale.git"
+  },
+  "author": "Tilen Komel <me@komelt.dev>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KomelT/Leaflet.TopoScale/issues"
+  },
+  "homepage": "https://github.com/KomelT/Leaflet.TopoScale#readme",
+  "dependencies": {
+    "minify": "^11.0.1"
+  }
+}
