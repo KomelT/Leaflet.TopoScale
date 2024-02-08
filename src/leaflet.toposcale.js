@@ -1,4 +1,4 @@
-(function (factory, window) {
+((function (factory, window) {
 
   // define an AMD module that relies on 'leaflet'
   if (typeof define === 'function' && define.amd) {
@@ -14,7 +14,7 @@
     window.L.Control.TopoScale = factory(L);
     L.control.toposcale = options => new window.L.Control.TopoScale(options);
   }
-}(function (L) {
+})(function (L) {
   var ScaleFactor = L.Control.extend({
       options: {
           position: 'bottomleft',
