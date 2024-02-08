@@ -19,8 +19,8 @@
       options: {
           position: 'bottomright',
           updateWhenIdle: true,
-					scale_text: "Merilo",
-					scale_cm_text: "1 cm na karti je v naravi",
+					scale_text: "Scale",
+					scale_cm_text: "1 cm on map is in nature",
           thousand_separator: ".",
           scale_separator: ':',
       },

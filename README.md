@@ -35,12 +35,14 @@ L.control
   .addTo(map);
 ```
 
-| Option             | Type    | Default       | Description                                                                                     |
-| ------------------ | ------- | ------------- | ----------------------------------------------------------------------------------------------- |
-| position           | String  | 'bottomright' | The position of the control (one of the map corners). See control positions.                    |
-| updateWhenIdle     | Boolean | false         | If true, the control is updated on moveend, otherwise it's always up-to-date (updated on move). |
-| thousand_separator | String  | '.'           | Character separting thousands inside scale factor. (25.000)                                     |
-| scale_separator    | String  | ':'           | Character separating number 1 and scale factor. (1:25.000)                                      |
+| Option             | Type    | Default                    | Description                                                                                     |
+| ------------------ | ------- | -------------------------- | ----------------------------------------------------------------------------------------------- |
+| position           | String  | 'bottomright'              | The position of the control (one of the map corners). See control positions.                    |
+| updateWhenIdle     | Boolean | false                      | If true, the control is updated on moveend, otherwise it's always up-to-date (updated on move). |
+| thousand_separator | String  | '.'                        | Character separting thousands inside scale factor. (25.000)                                     |
+| scale_separator    | String  | ':'                        | Character separating number 1 and scale factor. (1:25.000)                                      |
+| scale_text         | String  | 'Scale'                    | Scale heading text                                                                              |
+| scale_cm_text      | String  | '1 cm on map is in nature' | Scale in text (1 cm on map is in nature 250 m)                                                  |
 
 ## Inspired by & credit
 
