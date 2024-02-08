@@ -11,7 +11,7 @@
   href="https://cdn.jsdelivr.net/gh/KomelT/Leaflet.TopoScale/dist/leaflet.toposcale.min.css"
 />
 <script
-  src="./Leaflet.TopoScale/dist/leaflet.toposcale.min.js"
+  src="https://cdn.jsdelivr.net/gh/KomelT/Leaflet.TopoScale/dist/leaflet.toposcale.min.js"
   charset="utf-8"
 ></script>
 ```
