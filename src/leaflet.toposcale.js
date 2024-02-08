@@ -19,6 +19,8 @@
       options: {
           position: 'bottomright',
           updateWhenIdle: true,
+					scale_text: "Merilo",
+					scale_cm_text: "1 cm na karti je v naravi",
           thousand_separator: ".",
           scale_separator: ':',
       },
@@ -56,6 +58,23 @@
           }
       })(),
 
+			_mmTOpx: (function () {
+				// Create a temporary div to measure the conversion rate
+				const heightRef = document.createElement('div');
+				heightRef.style.cssText = 'height:1mm;visibility:hidden;position:absolute;'; // Use position:absolute to ensure it doesn't affect layout
+				document.body.appendChild(heightRef);
+
+				// Get the height of the div in pixels, which equals the pixels per mm
+				const pxPermm = heightRef.offsetHeight;
+
+				// Clean up by removing the div from the document
+				document.body.removeChild(heightRef);
+
+				return function mmTOpx(mm) {
+						return mm * pxPermm;
+				}
+		})(),
+
       _update: function () {
           var map = this._map;
 
@@ -66,12 +85,44 @@
               map.containerPointToLatLng([100, CenterOfMap])
           );
 
-          var ScreenMetersPer100Pixels = this._pxTOmm(100) / 1000;
+        	var ScreenMetersPer100Pixels = this._pxTOmm(100) / 1000;
 
           var scaleFactor = RealWorlMetersPer100Pixels / ScreenMetersPer100Pixels;
 
+					if (scaleFactor >= 23000 && scaleFactor <= 27000) scaleFactor = 25000
+
           // Formats end look
-          this._mScale.innerHTML = '1' + this.options.scale_separator + Math.round(scaleFactor).toString().replace(/\B(?=(\d{3})+(?!\d))/g, this.options.thousand_separator);
+          const scale = '1' + this.options.scale_separator + Math.round(scaleFactor).toString().replace(/\B(?=(\d{3})+(?!\d))/g, this.options.thousand_separator);
+          this._mScale.innerHTML = '<canvas width="300" height="100" id="topo-scale-canvas"></canvas>'
+
+          setTimeout(() => {
+						const canvas = document.getElementById('topo-scale-canvas');
+						if(!canvas) return ""
+						const ctx = canvas.getContext('2d');
+
+						const lp = 5 // Left Padding
+						const cmpxs = this._mmTOpx(10) // Pixles per cm
+
+						ctx.font = "bold 20px Arial";
+						ctx.fillText(`${this.options.scale_text} ${scale}`, lp, 20);
+
+						let meters = scaleFactor / 100
+						if ((scaleFactor / 100) < 10) meters = (scaleFactor / 100).toFixed(2)
+						if ((scaleFactor / 100) > 10) meters = (scaleFactor / 100).toFixed(0)
+
+						ctx.beginPath();
+						ctx.rect(lp, 60, cmpxs * 4 + 0.1, 0.3) // bottom
+						for (let i = 0; i < 5; i++) ctx.rect(cmpxs * i + lp, 50, 0.1, 10);
+						for (let i = 0; i < 9; i++) ctx.rect((cmpxs / 2) * i + lp, 53, 0.1, 7);
+						for (let i = 0; i < 10; i++) ctx.rect((cmpxs / 10) * i + lp, 56, 0.1, 4);
+						ctx.stroke();
+
+						ctx.font = "normal 8px Arial";
+						for (let i = 0; i < 5; i++) ctx.fillText(`${meters * i} m`, cmpxs * i + lp - 1, 40);
+
+						ctx.font = "normal 10px Arial";
+						ctx.fillText(`${this.options.scale_cm_text} ${meters} m`, 5, 90);
+        	}, 1)
       }
 
   });
