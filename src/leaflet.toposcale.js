@@ -26,7 +26,7 @@
       },
 
       onAdd: function (map) {
-          var className = 'leaflet-control-toposcale',
+          const className = 'leaflet-control-toposcale',
               container = L.DomUtil.create('div', className),
               options = this.options;
 
@@ -49,7 +49,7 @@
           document.body.appendChild(heightRef);
 
           heightRef = document.getElementById('heightRef');
-          var pxPermm = heightRef.offsetHeight;
+          const pxPermm = heightRef.offsetHeight;
 
           heightRef.parentNode.removeChild(heightRef);
 
@@ -76,18 +76,15 @@
 		})(),
 
       _update: function () {
-          var map = this._map;
+          const map = this._map;
 
-          var CenterOfMap = map.getSize().y / 2;
-
-          var RealWorlMetersPer100Pixels = map.distance(
+          const CenterOfMap = map.getSize().y / 2;
+          const RealWorlMetersPer100Pixels = map.distance(
               map.containerPointToLatLng([0, CenterOfMap]),
               map.containerPointToLatLng([100, CenterOfMap])
           );
-
-        	var ScreenMetersPer100Pixels = this._pxTOmm(100) / 1000;
-
-          var scaleFactor = RealWorlMetersPer100Pixels / ScreenMetersPer100Pixels;
+        	const ScreenMetersPer100Pixels = this._pxTOmm(100) / 1000;
+          const scaleFactor = RealWorlMetersPer100Pixels / ScreenMetersPer100Pixels;
 
 					// if (scaleFactor >= 23000 && scaleFactor <= 27000) scaleFactor = 25000
 
