@@ -89,7 +89,7 @@
 
           var scaleFactor = RealWorlMetersPer100Pixels / ScreenMetersPer100Pixels;
 
-					if (scaleFactor >= 23000 && scaleFactor <= 27000) scaleFactor = 25000
+					// if (scaleFactor >= 23000 && scaleFactor <= 27000) scaleFactor = 25000
 
           // Formats end look
           const scale = '1' + this.options.scale_separator + Math.round(scaleFactor).toString().replace(/\B(?=(\d{3})+(?!\d))/g, this.options.thousand_separator);
