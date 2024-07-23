@@ -27,8 +27,8 @@
 
     onAdd: function (map) {
       const opt = this.options
-      const className = 'leaflet-control-toposcale',
-            container = L.DomUtil.create('div', className);
+      const className = 'leaflet-control-toposcale';
+      const container = L.DomUtil.create('div', className);
 
       // Add scale container to DOM
       this._mScale = L.DomUtil.create('div', `${className}-scale`, container);
@@ -53,7 +53,15 @@
       map.on(this.options.updateWhenIdle ? 'moveend' : 'move', this._update.bind(this));
       map.whenReady(this._update.bind(this));
 
+      // Hide selector on print
+      addEventListener("beforeprint", (ev) => {
+        document.getElementsByClassName("leaflet-control-toposcale-selector")[0].style.display = "none"
+      })
 
+      // Show selector after print
+      addEventListener("afterprint", (ev) => {
+        document.getElementsByClassName("leaflet-control-toposcale-selector")[0].style.display = "block"
+      })
 
       return container;
     },
@@ -151,8 +159,8 @@
     },
 
     _updateScaleSelect: function(e) {
-      const selectedScale = parseFloat(e.target.value);
-      if (!selectedScale || isNaN(selectedScale)) return;
+      const selectedScale = Number.parseFloat(e.target.value);
+      if (!selectedScale || Number.isNaN(selectedScale)) return;
     
       const map = this._map;
     
