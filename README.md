@@ -1,5 +1,11 @@
 # Leaflet.TopoScale
 
+## Preview
+
+[https://komelt.github.io/Leaflet.TopoScale/](https://komelt.github.io/Leaflet.TopoScale/)
+
+![Preview screenshot](./assets/screenshot.png)
+
 ## Quick Start
 
 1. Include Leaflet.TopoScale CSS and JS into your project:
