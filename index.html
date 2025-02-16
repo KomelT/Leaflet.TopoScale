@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaflet.TopoScale Demo</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+  <!-- Topo Scale CSS https://github.com/KomelT/Leaflet.TopoScale -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/KomelT/Leaflet.TopoScale@latest/dist/leaflet.toposcale.min.css" />
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      height: 100vh;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+</body>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<!-- Topo Scale JS https://github.com/KomelT/Leaflet.TopoScale -->
+<script src="https://cdn.jsdelivr.net/gh/KomelT/Leaflet.TopoScale@latest/dist/leaflet.toposcale.min.js"
+  charset="utf-8"></script>
+
+<script>
+  // Define OpenStreetMap map
+  const osmMap = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  });
+
+  // Init map
+  const map = new L.Map('map', {
+    layers: [osmMap],
+  });
+
+  map.setView(
+    [
+      46.0,
+      14.5,
+    ],
+    7
+  )
+
+  // Add Topo Scale
+  L.control.toposcale(
+    {
+      scale_text: "Scale",
+      select_scale_text: "Choose scale",
+      scale_cm_text: "1 cm on map is in reality",
+      position: 'bottomright',
+      updateWhenIdle: true,
+      thousand_separator: ".",
+      scale_separator: ':',
+    }
+  ).addTo(map);
+</script>
+
+</html>
